@@ -2,7 +2,7 @@ type Choose<T, K extends keyof T> = {
   [Key in K]: T[Key];
 };
 
-type test = {
+type test1 = {
   name: string;
   age: number;
   test: () => string;

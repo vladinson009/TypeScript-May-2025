@@ -76,9 +76,9 @@ class HolidayManager<T extends Holiday, V extends VacationType>
   }
 }
 
-let holiday = new PlannedHoliday(new Date(2024, 1, 1), new Date(2024, 1, 4));
-let holiday2 = new PlannedHoliday(new Date(2025, 3, 14), new Date(2024, 3, 17));
-let holidayManager = new HolidayManager<Holiday, MountainVacation>();
-// holidayManager.reserveVacation(holiday, BeachVacation.ScubaDiving);
-// holidayManager.reserveVacation(holiday2, TravelVacation.InCountry);
+let holiday = new PlannedHoliday(new Date(2022, 10, 11), new Date(2022, 10, 18));
+let holiday2 = new PlannedHoliday(new Date(2024, 5, 18), new Date(2024, 5, 22));
+let holidayManager = new HolidayManager<Holiday, BeachVacation>();
+holidayManager.reserveVacation(holiday, BeachVacation.ScubaDiving);
+holidayManager.reserveVacation(holiday2, BeachVacation.Sea);
 console.log(holidayManager.listReservations());
