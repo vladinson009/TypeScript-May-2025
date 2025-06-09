@@ -9,10 +9,7 @@ export class DNACodeLanguage implements Language {
   }
 
   public isCompatibleToCharset(sample: string): boolean {
-    const isCompatible = [...sample].every(
-      (x) => this.charset.has(x as DNABase)
-      //   const isMatch = [...this.charset].findIndex((el) => x === el);
-    );
+    const isCompatible = [...sample].every((x) => this.charset.has(x as DNABase));
     return isCompatible;
   }
 }
