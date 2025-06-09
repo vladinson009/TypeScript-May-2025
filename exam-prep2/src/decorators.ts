@@ -1,6 +1,3 @@
-import { PartialMessageEncoder } from './contracts/implemented/partialMessageEncoder';
-import { MessageEncoder } from './contracts/messageEncoder';
-
 export function decorator1<T extends new (...arg: any[]) => {}>(constructor: T) {
   return class extends constructor {
     _offset = 3;

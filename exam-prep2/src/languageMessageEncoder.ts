@@ -66,9 +66,3 @@ export class LanguageMessageEncoder<
     return `Total processed characters count: ${totalChars}`;
   }
 }
-
-/**
-In case the message, after being stripped from forbidden 
-symbols is not compatible with the language, returns 
-the string "Message not compatible."
- */
