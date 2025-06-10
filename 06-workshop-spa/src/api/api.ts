@@ -30,21 +30,21 @@ async function fetcher<TData, VReturn>(
 }
 
 function get<TData>(url: string): Promise<TData> {
-  return fetcher(url, 'GET');
+  return fetcher<undefined, TData>(url, 'GET');
 }
 function post<TData>(
   url: string,
   data: CreateUserType | CreatePostType
 ): Promise<TData> {
-  return fetcher(url, 'POST', data);
+  return fetcher<typeof data, TData>(url, 'POST', data);
 }
 function put<TData>(
   url: string,
   data: CreateUserType | CreatePostType
 ): Promise<TData> {
-  return fetcher(url, 'PUT', data);
+  return fetcher<typeof data, TData>(url, 'PUT', data);
 }
 function del(url: string): Promise<void> {
-  return fetcher(url, 'DELETE');
+  return fetcher<undefined, void>(url, 'DELETE');
 }
 export default { get, post, put, del };
