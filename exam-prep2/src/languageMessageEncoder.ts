@@ -21,24 +21,24 @@ export class LanguageMessageEncoder<
   constructor(lang: TLang, ciper: TCipher) {
     super(lang, ciper);
   }
-
+  protected override stripForbiddenSymbols(message: string) {
+    let forbiddenSymbols = PartialMessageEncoder.forbiddenSymbols;
+    forbiddenSymbols.forEach((x) => (message = message.replaceAll(x, '')));
+    return message;
+  }
   public encodeMessage(secretMessage: unknown) {
     if (typeof secretMessage !== 'string' || secretMessage.length === 0) {
       return 'No message.';
     }
 
-    let prevMessage = '';
-    let strippedMessage = this.stripForbiddenSymbols(secretMessage);
-    while (strippedMessage !== prevMessage) {
-      prevMessage = strippedMessage;
-      strippedMessage = this.stripForbiddenSymbols(prevMessage);
-    }
-    const isCompatible = this.language.isCompatibleToCharset(prevMessage);
+    const strippedMessage = this.stripForbiddenSymbols(secretMessage);
+    const isCompatible = this.language.isCompatibleToCharset(strippedMessage);
+
     if (!isCompatible) {
       return 'Message not compatible.';
     }
 
-    const result = this.cipher.encipher(prevMessage);
+    const result = this.cipher.encipher(strippedMessage);
     this.encoded += result.length;
     return result;
   }
